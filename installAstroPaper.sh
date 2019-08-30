@@ -56,7 +56,7 @@ sudo cat > /etc/NetworkManager/dispatcher.d/updateDisplay.sh <<- EOF
 interface=\$1
 status=\$2
 
-if [ "$status" == "up" ]
+if [ "\$status" == "up" ]
 then
 	if [ "\$interface" == "eth0" ]
 	then
