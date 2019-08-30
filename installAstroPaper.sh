@@ -34,7 +34,7 @@ PS1='astroPaperDisplay~$ '
 
 #Installs the requirements for the ePaper Display
 display "Installing Software Requirements"
-sudo apt -y install python3-pip python-PIL
+sudo apt -y install python3-pip
 pip3 install spidev
 pip3 install RPi.GPIO
 pip3 install Pillow
@@ -53,17 +53,17 @@ display "Creating and installing display update script."
 sudo cat > /etc/NetworkManager/dispatcher.d/updateDisplay.sh <<- EOF
 #!/bin/bash
 
-interface=$1
-status=$2
+interface=\$1
+status=\$2
 
 if [ "$status" == "up" ]
 then
-	if [ "$interface" == "eth0" ]
+	if [ "\$interface" == "eth0" ]
 	then
 		/usr/bin/python3 $DIR/displayEthStatus.py
 	fi
 
-	if [ "$interface" == "wlan0" ]
+	if [ "\$interface" == "wlan0" ]
 	then
 		/usr/bin/python3 $DIR/displayWifiStatus.py
 	fi
